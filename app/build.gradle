@@ -11,12 +11,28 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            def signFile = project.rootProject.file('./release.keystore')
+            if (signFile.exists()) {
+                storeFile signFile
+                storePassword "qweqwe"
+                keyAlias "habrcicdcat"
+                keyPassword "qweqwe"
+            }
+        }
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
 }
 
 dependencies {
