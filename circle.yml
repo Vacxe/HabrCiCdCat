@@ -8,7 +8,7 @@ machine:
 
 general:
   artifacts:
-    - /home/ubuntu/moov-android/app/build/outputs/apk/
+    - /home/ubuntu/HabrCiCdCat/app/build/outputs/apk/
 
 dependencies:
   cache_directories:
@@ -17,3 +17,8 @@ dependencies:
   override:
     - (source scripts/environmentSetup.sh && getAndroidSDK)
 
+deployment:
+  beta:
+    branch: master
+    commands:
+      - cd scripts && ./build.sh
